@@ -119,8 +119,8 @@ mvn -q -DskipTests=false test
 - Ergänze die `README.md` im Main-Branch um den Abschnitt:
   ```markdown
   ## Übung 1
-  - Autor: <dein Name>
-  - Besonderheit: <1–2 Sätze zu deiner bisherigen Git-Erfahrung>
+  - Autor: <Gottlieb-Zimmermann Niklas>
+  - Besonderheit: Ich hatte bereits grundlegende Kenntnisse nur fehlt es an Übung, durch eine genau Anleitung war dies jedoch kein Problem. 
   ```
 - Reiche den **Repo-Link** in eLearning bis **14.10.2025, 23:55** ein.
 
