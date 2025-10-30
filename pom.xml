@@ -8,12 +8,19 @@
   <version>1.0.0</version>
   <name>ci-cd-uebung</name>
   <description>Übung 1: Java-Basisprojekt für CI/CD Kurs</description>
+
   <properties>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
     <junit.jupiter.version>5.10.2</junit.jupiter.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <!-- SonarCloud Konfiguration -->
+    <sonar.organization>geezy10</sonar.organization>
+    <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+    <sonar.projectKey>geezy10_cicd-BA-uebung01-GZ</sonar.projectKey>
   </properties>
+
   <dependencies>
     <!-- JUnit 5 API -->
     <dependency>
@@ -36,13 +43,8 @@
       <version>${junit.jupiter.version}</version>
       <scope>test</scope>
     </dependency>
-      <dependency>
-          <groupId>junit</groupId>
-          <artifactId>junit</artifactId>
-          <version>RELEASE</version>
-          <scope>compile</scope>
-      </dependency>
   </dependencies>
+
   <build>
     <plugins>
       <!-- JUnit 5/Surefire -->
