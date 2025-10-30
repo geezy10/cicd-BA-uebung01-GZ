@@ -15,15 +15,26 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    name: Build on ${{ matrix.os }} with Java ${{ matrix.java-version }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        java-version: [17, 21]
+
+        exclude:
+          - os: windows-latest
+            java-version: 21
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Set up JDK 17
+      - name: Set up JDK ${{ matrix.java-version }}
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
+
+          java-version: ${{ matrix.java-version }}
           distribution: 'temurin'
           cache: 'maven'
 
@@ -33,5 +44,5 @@ jobs:
       - name: Upload Surefire Test Reports
         uses: actions/upload-artifact@v4
         with:
-          name: surefire-reports-ubuntu-17
+          name: surefire-reports-${{ matrix.os }}-${{ matrix.java-version }}
           path: target/surefire-reports/
