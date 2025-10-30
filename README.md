@@ -1,3 +1,5 @@
+[![CI/CD Pipeline](https://github.com/geezy10/cicd-BA-uebung01-GZ/actions/workflows/ci.yml/badge.svg)](https://github.com/geezy10/cicd-BA-uebung01-GZ/actions/workflows/ci.yml)
+
 # CI/CD Übung – Java Basisprojekt (Ü1 mit Anleitungen)
 
 Dieses Repository ist der Startpunkt für **Übung 1** und wird in **allen folgenden Übungen** weiterverwendet
