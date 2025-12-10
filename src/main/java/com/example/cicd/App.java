@@ -1,8 +1,14 @@
 package com.example.cicd;
 import java.util.Arrays;
 import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+
 
 public class App {
+    private static final Logger logger = LogManager.getLogger(App.class);
+
     public static void main(String[] args) {
         Calculator calc = new Calculator();
         int sum = calc.add(2, 3);
