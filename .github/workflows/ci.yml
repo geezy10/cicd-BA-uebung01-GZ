@@ -94,14 +94,14 @@ jobs:
         uses: anchore/scan-action@v3
         with:
           image: "${{ github.repository_owner }}/cicd-ba-uebung01-gz:${{ github.sha }}"
-          output-format: "json"
-          output-file: "grype-report.json"
-          fail-on-severity: "critical"
+          severity-cutoff: critical
+          output-format: "json:grype-report.json"
       - name: Upload Grype JSON report as artifact
         uses: actions/upload-artifact@v4
         with:
           name: grype-report
           path: grype-report.json
+
 
   trivy-scan:
     name: Trivy Security Scan
