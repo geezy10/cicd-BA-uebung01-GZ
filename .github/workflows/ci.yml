@@ -117,13 +117,12 @@ jobs:
         run: docker load --input docker-image-${{ steps.vars.outputs.sha_short }}.tar
 
       - name: Add Grype to pipeline & run scan
-        uses: anchore/grype-action@v0.7.1
+        uses: anchore/scan-action@v0.15.0
         with:
           image: "${{ github.repository_owner }}/cicd-ba-uebung01-gz:${{ steps.vars.outputs.sha_short }}"
           output-format: "json"
           output-file: "grype-report.json"
           fail-on-severity: "critical"
-          version: 'v0.74.4'
 
       - name: Upload Grype JSON report as artifact
         uses: actions/upload-artifact@v4
