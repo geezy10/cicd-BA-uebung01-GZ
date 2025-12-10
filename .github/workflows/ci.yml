@@ -90,12 +90,15 @@ jobs:
           name: docker-image-${{ github.sha }}
       - name: Load Docker image from .tar file
         run: docker load --input docker-image-${{ github.sha }}.tar
-      - name: Run Grype Scan
+      - name: Run Grype Scan and save to file
         uses: anchore/scan-action@v3
+        id: grype
         with:
           image: "${{ github.repository_owner }}/cicd-ba-uebung01-gz:${{ github.sha }}"
           severity-cutoff: critical
-          output-format: "json:grype-report.json"
+          output-format: json # Nur das Format, kein Dateiname
+      - name: Save Grype JSON output to file
+        run: echo '${{ steps.grype.outputs.json }}' > grype-report.json
       - name: Upload Grype JSON report as artifact
         uses: actions/upload-artifact@v4
         with:
@@ -123,7 +126,6 @@ jobs:
           output: 'trivy-report.json'
           exit-code: '0'
           severity: 'CRITICAL'
-          version: '0.48.0'
       - name: Upload Trivy JSON report as artifact
         uses: actions/upload-artifact@v4
         with:
