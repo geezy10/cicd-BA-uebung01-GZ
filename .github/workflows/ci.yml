@@ -70,6 +70,13 @@ jobs:
           tags: ${{ github.repository_owner }}/cicd-ba-uebung01-gz:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      - name: Verify content of built JAR
+        run: |
+          echo "Listing contents of the JAR file inside the Docker image:"
+          docker run --rm --entrypoint jar ${{ github.repository_owner }}/cicd-ba-uebung01-gz:${{ github.sha }} -tf /app/app.jar | grep 'log4j' || echo "log4j not found in JAR"
+          
+
       - name: Save Docker image to a .tar file
         run: docker save ${{ github.repository_owner }}/cicd-ba-uebung01-gz:${{ github.sha }} --output docker-image-${{ github.sha }}.tar
       - name: Upload Docker image artifact
@@ -77,6 +84,7 @@ jobs:
         with:
           name: docker-image-${{ github.sha }}
           path: docker-image-${{ github.sha }}.tar
+
 
   grype-scan:
     name: Grype Security Scan
